@@ -19,6 +19,7 @@ import {
   AccordionSummary,
   AccordionDetails,
   Divider,
+  Alert,
 } from '@mui/material';
 import {
   AutoAwesome,
@@ -28,6 +29,7 @@ import {
   LightbulbOutlined,
   WarningAmber,
 } from '@mui/icons-material';
+import { generateStepByStep } from '../services/geminiService';
 
 interface StepData {
   title: string;
@@ -39,9 +41,11 @@ interface StepData {
 
 const StepByStepGuide: React.FC = () => {
   const [task, setTask] = useState('');
+  const [taskName, setTaskName] = useState('');
   const [steps, setSteps] = useState<StepData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
+  const [error, setError] = useState('');
 
   const exampleTasks = [
     'Tạo biểu đồ cột từ dữ liệu bán hàng',
@@ -543,12 +547,20 @@ const StepByStepGuide: React.FC = () => {
     setIsLoading(true);
     setSteps([]);
     setActiveStep(0);
+    setError('');
 
-    // Simulate API call
-    setTimeout(() => {
-      // Find matching task data
-      let selectedSteps: StepData[] = [];
+    try {
+      // Call Gemini API với JSON output
+      const result = await generateStepByStep(task);
+      
+      setTaskName(result.taskName);
+      setSteps(result.steps);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Đã xảy ra lỗi!');
+      
+      // Fallback: Use demo data if API fails
       const taskLower = task.toLowerCase();
+      let selectedSteps: StepData[] = [];
       
       if (taskLower.includes('biểu đồ') || taskLower.includes('chart') || taskLower.includes('cột')) {
         selectedSteps = taskStepsData['biểu đồ'];
@@ -563,13 +575,14 @@ const StepByStepGuide: React.FC = () => {
       } else if (taskLower.includes('validation') || taskLower.includes('dropdown')) {
         selectedSteps = taskStepsData['data validation'];
       } else {
-        // Default example
         selectedSteps = taskStepsData['biểu đồ'];
       }
-
+      
       setSteps(selectedSteps);
+      setTaskName(task);
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   const handleExampleClick = (example: string) => {
@@ -688,6 +701,12 @@ const StepByStepGuide: React.FC = () => {
 
           {/* Steps Section */}
           <Grid item xs={12} md={7}>
+            {error && (
+              <Alert severity="warning" sx={{ mb: 3 }}>
+                {error} - Đang hiển thị dữ liệu demo.
+              </Alert>
+            )}
+
             {steps.length > 0 ? (
               <Box>
                 {/* Progress Overview */}

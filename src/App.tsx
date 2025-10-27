@@ -9,6 +9,8 @@ import FeaturesSection from "./components/FeaturesSection";
 import Footer from "./components/Footer";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import DebugAPI from "./pages/DebugAPI";
+import Download from "./pages/Download";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
               } />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/download" element={<Download />} />
+              <Route path="/debug" element={<DebugAPI />} />
             </Routes>
           </Box>
           <Footer />

@@ -1,0 +1,176 @@
+{
+  "examples": [
+    {
+      "input": "Tính tổng các ô từ A1 đến A10",
+      "output": {
+        "formula": "=SUM(A1:A10)",
+        "explanation": "Hàm SUM() tính tổng tất cả giá trị trong phạm vi được chỉ định. Trong trường hợp này, nó sẽ cộng tất cả các số từ ô A1 đến A10.",
+        "example": "Nếu A1=5, A2=10, A3=15, kết quả sẽ là 30"
+      }
+    },
+    {
+      "input": "Tìm giá trị lớn nhất trong cột B",
+      "output": {
+        "formula": "=MAX(B:B)",
+        "explanation": "Hàm MAX() trả về giá trị lớn nhất trong một phạm vi. B:B nghĩa là toàn bộ cột B.",
+        "example": "Nếu cột B có các giá trị 10, 25, 18, 30, kết quả là 30"
+      }
+    },
+    {
+      "input": "Đếm số ô không rỗng trong dải C1:C50",
+      "output": {
+        "formula": "=COUNTA(C1:C50)",
+        "explanation": "COUNTA() đếm số lượng ô không trống trong phạm vi. Khác với COUNT() chỉ đếm số, COUNTA() đếm cả text.",
+        "example": "Nếu có 30 ô có dữ liệu và 20 ô trống, kết quả là 30"
+      }
+    },
+    {
+      "input": "Tính trung bình có điều kiện khi cột A lớn hơn 100",
+      "output": {
+        "formula": "=AVERAGEIF(A:A,\">100\")",
+        "explanation": "AVERAGEIF() tính trung bình các giá trị thỏa mãn điều kiện. Tham số đầu là phạm vi kiểm tra, tham số thứ hai là điều kiện.",
+        "example": "Nếu A có giá trị 50, 120, 150, 80, chỉ tính trung bình 120 và 150 = 135"
+      }
+    },
+    {
+      "input": "Tính tổng doanh thu khi trạng thái là Hoàn thành",
+      "output": {
+        "formula": "=SUMIF(C:C,\"Hoàn thành\",D:D)",
+        "explanation": "SUMIF() tính tổng có điều kiện. Cột C chứa trạng thái, điều kiện là 'Hoàn thành', và tính tổng cột D (doanh thu).",
+        "example": "Nếu C2='Hoàn thành', D2=1000, C3='Đang xử lý', D3=500, kết quả là 1000"
+      }
+    },
+    {
+      "input": "Nối chuỗi từ cột A và B với dấu cách ở giữa",
+      "output": {
+        "formula": "=A1&\" \"&B1",
+        "explanation": "Toán tử & được dùng để nối chuỗi. \" \" thêm dấu cách giữa hai giá trị.",
+        "example": "Nếu A1='Nguyễn', B1='Văn A', kết quả là 'Nguyễn Văn A'"
+      }
+    },
+    {
+      "input": "Tìm kiếm giá trị trong bảng và trả về kết quả tương ứng",
+      "output": {
+        "formula": "=VLOOKUP(A1,B:D,2,FALSE)",
+        "explanation": "VLOOKUP tìm giá trị A1 trong cột B, và trả về giá trị từ cột thứ 2 (cột C) trong phạm vi B:D. FALSE nghĩa là tìm kiếm chính xác.",
+        "example": "Nếu A1='SP001' và trong cột B có 'SP001' ở hàng 5, sẽ trả về giá trị ở C5"
+      }
+    },
+    {
+      "input": "Kiểm tra nếu ô A1 trống thì hiển thị N/A",
+      "output": {
+        "formula": "=IF(A1=\"\",\"N/A\",A1)",
+        "explanation": "IF() kiểm tra điều kiện. Nếu A1 rỗng (=\"\"), hiển thị 'N/A', ngược lại hiển thị giá trị A1.",
+        "example": "Nếu A1 trống → 'N/A', nếu A1=100 → 100"
+      }
+    },
+    {
+      "input": "Tính số ngày giữa hai ngày",
+      "output": {
+        "formula": "=B1-A1",
+        "explanation": "Trừ hai ô chứa ngày tháng sẽ cho ra số ngày chênh lệch. Đảm bảo cả hai ô đều có định dạng Date.",
+        "example": "Nếu A1=01/01/2024, B1=10/01/2024, kết quả là 9"
+      }
+    },
+    {
+      "input": "Làm tròn số đến 2 chữ số thập phân",
+      "output": {
+        "formula": "=ROUND(A1,2)",
+        "explanation": "ROUND() làm tròn số. Tham số đầu là số cần làm tròn, tham số thứ hai là số chữ số thập phân.",
+        "example": "Nếu A1=3.14159, kết quả là 3.14"
+      }
+    },
+    {
+      "input": "Đếm số ô thỏa mãn nhiều điều kiện",
+      "output": {
+        "formula": "=COUNTIFS(A:A,\">100\",B:B,\"Việt Nam\")",
+        "explanation": "COUNTIFS() đếm ô thỏa mãn nhiều điều kiện. Cột A phải >100 VÀ cột B phải là 'Việt Nam'.",
+        "example": "Đếm các dòng có giá trị cột A > 100 và cột B = 'Việt Nam'"
+      }
+    },
+    {
+      "input": "Chuyển chữ thường thành chữ HOA",
+      "output": {
+        "formula": "=UPPER(A1)",
+        "explanation": "UPPER() chuyển tất cả ký tự thành chữ hoa. Ngược lại, LOWER() chuyển thành chữ thường, PROPER() viết hoa chữ cái đầu.",
+        "example": "Nếu A1='excel', kết quả là 'EXCEL'"
+      }
+    },
+    {
+      "input": "Lấy năm từ ngày tháng",
+      "output": {
+        "formula": "=YEAR(A1)",
+        "explanation": "YEAR() trích xuất năm từ giá trị ngày tháng. Tương tự có MONTH() và DAY().",
+        "example": "Nếu A1=15/03/2024, kết quả là 2024"
+      }
+    },
+    {
+      "input": "Tính phần trăm giá trị so với tổng",
+      "output": {
+        "formula": "=A1/SUM($A$1:$A$10)*100",
+        "explanation": "Chia giá trị A1 cho tổng của dải A1:A10, nhân 100 để được phần trăm. Dấu $ khóa tham chiếu khi copy công thức.",
+        "example": "Nếu A1=20 và tổng A1:A10=100, kết quả là 20%"
+      }
+    },
+    {
+      "input": "Xóa khoảng trắng thừa trong văn bản",
+      "output": {
+        "formula": "=TRIM(A1)",
+        "explanation": "TRIM() loại bỏ khoảng trắng thừa ở đầu, cuối và giữa (chỉ giữ lại 1 khoảng trắng giữa các từ).",
+        "example": "Nếu A1='  Excel   2024  ', kết quả là 'Excel 2024'"
+      }
+    },
+    {
+      "input": "Tạo số ngẫu nhiên từ 1 đến 100",
+      "output": {
+        "formula": "=RANDBETWEEN(1,100)",
+        "explanation": "RANDBETWEEN() tạo số nguyên ngẫu nhiên trong khoảng từ giá trị min đến max.",
+        "example": "Có thể là 1, 50, 99, hoặc bất kỳ số nào từ 1-100"
+      }
+    },
+    {
+      "input": "Tìm vị trí của ký tự trong chuỗi",
+      "output": {
+        "formula": "=FIND(\"@\",A1)",
+        "explanation": "FIND() tìm vị trí xuất hiện đầu tiên của ký tự hoặc chuỗi con. Trả về số thứ tự, bắt đầu từ 1.",
+        "example": "Nếu A1='email@gmail.com', kết quả là 6"
+      }
+    },
+    {
+      "input": "Lấy 5 ký tự đầu tiên của văn bản",
+      "output": {
+        "formula": "=LEFT(A1,5)",
+        "explanation": "LEFT() lấy n ký tự từ bên trái chuỗi. Ngược lại, RIGHT() lấy từ bên phải, MID() lấy từ giữa.",
+        "example": "Nếu A1='ABCDEFGH', kết quả là 'ABCDE'"
+      }
+    },
+    {
+      "input": "Kiểm tra ô có chứa văn bản cụ thể không",
+      "output": {
+        "formula": "=IF(ISNUMBER(SEARCH(\"Excel\",A1)),\"Có\",\"Không\")",
+        "explanation": "SEARCH() tìm văn bản (không phân biệt hoa thường), ISNUMBER() kiểm tra kết quả có phải số không, IF() trả về 'Có' hoặc 'Không'.",
+        "example": "Nếu A1='Microsoft Excel', kết quả là 'Có'"
+      }
+    },
+    {
+      "input": "Tính tổng với nhiều điều kiện phức tạp",
+      "output": {
+        "formula": "=SUMIFS(E:E,A:A,\"Việt Nam\",B:B,\">100\",C:C,\"Hoàn thành\")",
+        "explanation": "SUMIFS() tính tổng cột E khi: cột A='Việt Nam' VÀ cột B>100 VÀ cột C='Hoàn thành'. Có thể thêm nhiều điều kiện.",
+        "example": "Chỉ cộng các dòng thỏa mãn TẤT CẢ 3 điều kiện"
+      }
+    }
+  ],
+  "tips": [
+    "Luôn bắt đầu công thức Excel bằng dấu =",
+    "Sử dụng $ để khóa tham chiếu khi cần copy công thức",
+    "VLOOKUP chỉ tìm từ trái sang phải, dùng INDEX-MATCH cho linh hoạt hơn",
+    "FALSE trong VLOOKUP/MATCH nghĩa là tìm chính xác, TRUE là tìm tương đối",
+    "Dùng IFERROR() để xử lý lỗi #N/A, #DIV/0!, etc.",
+    "COUNTIF/SUMIF cho 1 điều kiện, COUNTIFS/SUMIFS cho nhiều điều kiện",
+    "Khi làm việc với ngày tháng, đảm bảo ô có định dạng Date",
+    "Dấu & nối chuỗi, CONCATENATE() hoặc TEXTJOIN() cho nâng cao",
+    "Dùng named ranges để công thức dễ đọc: =SUM(DoanhThu) thay vì =SUM(A1:A100)"
+  ]
+}
+

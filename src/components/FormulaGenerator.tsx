@@ -11,18 +11,23 @@ import {
   Chip,
   Grid,
   CircularProgress,
+  Alert,
 } from '@mui/material';
 import {
   ContentCopy,
   AutoAwesome,
   CheckCircle,
 } from '@mui/icons-material';
+import { generateExcelFormula } from '../services/geminiService';
 
 const FormulaGenerator: React.FC = () => {
   const [prompt, setPrompt] = useState('');
   const [generatedFormula, setGeneratedFormula] = useState('');
+  const [explanation, setExplanation] = useState('');
+  const [example, setExample] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [error, setError] = useState('');
 
   const examplePrompts = [
     'Tính tổng các ô từ A1 đến A10',
@@ -35,11 +40,23 @@ const FormulaGenerator: React.FC = () => {
     if (!prompt.trim()) return;
     
     setIsLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      setGeneratedFormula('=SUM(A1:A10)');
+    setError('');
+    
+    try {
+      // Call Gemini API với JSON output
+      const result = await generateExcelFormula(prompt);
+      
+      setGeneratedFormula(result.formula);
+      setExplanation(result.explanation);
+      setExample(result.example || '');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Đã xảy ra lỗi!');
+      setGeneratedFormula('');
+      setExplanation('');
+      setExample('');
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   const handleCopy = () => {
@@ -171,6 +188,12 @@ const FormulaGenerator: React.FC = () => {
                   Công thức được tạo
                 </Typography>
 
+                {error && (
+                  <Alert severity="error" sx={{ mb: 2 }}>
+                    {error}
+                  </Alert>
+                )}
+
                 {generatedFormula ? (
                   <Box>
                     <Paper
@@ -208,15 +231,25 @@ const FormulaGenerator: React.FC = () => {
                       </Typography>
                     </Paper>
 
-                    <Box sx={{ p: 3, backgroundColor: '#eff6ff', borderRadius: 2 }}>
+                    <Box sx={{ p: 3, backgroundColor: '#eff6ff', borderRadius: 2, mb: 2 }}>
                       <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#1e40af' }}>
                         Giải thích:
                       </Typography>
                       <Typography variant="body2" sx={{ color: '#374151', lineHeight: 1.7 }}>
-                        Công thức này sẽ tính tổng tất cả các giá trị từ ô A1 đến A10. 
-                        Hàm SUM() được sử dụng để cộng tất cả các số trong phạm vi đã chỉ định.
+                        {explanation}
                       </Typography>
                     </Box>
+
+                    {example && (
+                      <Box sx={{ p: 3, backgroundColor: '#fef3c7', borderRadius: 2 }}>
+                        <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1, color: '#92400e' }}>
+                          Ví dụ:
+                        </Typography>
+                        <Typography variant="body2" sx={{ color: '#78350f', lineHeight: 1.7 }}>
+                          {example}
+                        </Typography>
+                      </Box>
+                    )}
                   </Box>
                 ) : (
                   <Box
