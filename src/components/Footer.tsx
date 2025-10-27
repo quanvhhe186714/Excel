@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -16,9 +16,14 @@ import {
   ListAlt,
   Home,
   School,
+  Key,
 } from '@mui/icons-material';
+import ApiKeySetup from './ApiKeySetup';
+import { hasApiKey } from '../services/geminiService';
 
 const Footer: React.FC = () => {
+  const [showApiSetup, setShowApiSetup] = useState(false);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -188,6 +193,24 @@ const Footer: React.FC = () => {
                 <Email fontSize="small" />
                 Liên hệ
               </Link>
+              <Link
+                onClick={() => setShowApiSetup(true)}
+                sx={{
+                  color: '#9ca3af',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1,
+                  transition: 'color 0.3s ease',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    color: '#10b981',
+                  },
+                }}
+              >
+                <Key fontSize="small" />
+                {hasApiKey() ? 'API Key ✓' : 'Cài Đặt API'}
+              </Link>
             </Box>
           </Grid>
 
@@ -283,6 +306,12 @@ const Footer: React.FC = () => {
           </Typography>
         </Box>
       </Container>
+
+      {/* API Key Setup Dialog */}
+      <ApiKeySetup 
+        open={showApiSetup} 
+        onClose={() => setShowApiSetup(false)}
+      />
     </Box>
   );
 };

@@ -1,20 +1,54 @@
 /**
- * ⚠️ WARNING: FOR DEMO PURPOSES ONLY! ⚠️
+ * Gemini API Service
  * 
- * API key được lưu trong .env.local (không commit lên Git)
- * 
- * For production:
- * 1. Move this to backend API
- * 2. Never expose API keys in frontend
- * 3. Implement authentication & rate limiting
+ * KHÔNG có API key trong code - User phải nhập key qua UI để sử dụng
  */
 
-const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY || '';
 const GEMINI_BASE_URL = 'https://generativelanguage.googleapis.com/v1';
 
-// Validate API key exists
-if (!GEMINI_API_KEY) {
-  console.error('❌ GEMINI_API_KEY not found! Check .env.local file');
+/**
+ * Lấy API key từ localStorage (user đã nhập)
+ */
+function getApiKey(): string {
+  const key = localStorage.getItem('gemini_api_key');
+  if (!key || !key.trim()) {
+    throw new Error('⚠️ Chưa có API key! Vui lòng nhập API key để sử dụng.');
+  }
+  return key.trim();
+}
+
+/**
+ * Lưu API key vào localStorage
+ */
+export function saveApiKey(key: string): void {
+  if (!key || !key.trim()) {
+    throw new Error('API key không hợp lệ');
+  }
+  localStorage.setItem('gemini_api_key', key.trim());
+}
+
+/**
+ * Xóa API key
+ */
+export function clearApiKey(): void {
+  localStorage.removeItem('gemini_api_key');
+}
+
+/**
+ * Check đã có API key chưa
+ */
+export function hasApiKey(): boolean {
+  const key = localStorage.getItem('gemini_api_key');
+  return !!(key && key.trim());
+}
+
+/**
+ * Lấy key masked để hiển thị
+ */
+export function getApiKeyMasked(): string {
+  const key = localStorage.getItem('gemini_api_key');
+  if (!key || key.length < 10) return '';
+  return key.substring(0, 10) + '...' + key.substring(key.length - 4);
 }
 
 // Danh sách models ưu tiên + fallback
@@ -146,7 +180,7 @@ async function callGenerateContent(
   payload: any,
   retryCount = 0
 ): Promise<any> {
-  const url = `${GEMINI_BASE_URL}/models/${modelName}:generateContent?key=${encodeURIComponent(GEMINI_API_KEY)}`;
+  const url = `${GEMINI_BASE_URL}/models/${modelName}:generateContent?key=${encodeURIComponent(getApiKey())}`;
   log('callGenerate →', modelName, '| attempt:', retryCount + 1);
   
   try {
@@ -197,7 +231,7 @@ export async function generateExcelFormula(prompt: string): Promise<FormulaRespo
   try {
     // 1. Chọn model (cache nếu đã có)
     if (!cachedModel) {
-      const availableModels = await listModels(GEMINI_API_KEY);
+      const availableModels = await listModels(getApiKey());
       log('Available models:', availableModels.slice(0, 5)); // Show first 5
       
       if (availableModels.length === 0) {
@@ -205,7 +239,7 @@ export async function generateExcelFormula(prompt: string): Promise<FormulaRespo
       }
       
       // Chọn model từ danh sách có sẵn
-      cachedModel = await pickAvailableModel(GEMINI_API_KEY);
+      cachedModel = await pickAvailableModel(getApiKey());
       
       if (!cachedModel) {
         // Fallback: dùng model đầu tiên trong list
@@ -245,7 +279,7 @@ KHÔNG viết markdown, KHÔNG giải thích thêm, CHỈ JSON thuần.`;
     } catch (error) {
       // 3. Retry với TẤT CẢ models available
       log('Retry with all available models');
-      const allModels = await listModels(GEMINI_API_KEY);
+      const allModels = await listModels(getApiKey());
       
       for (const model of allModels) {
         if (model === cachedModel) continue;
@@ -293,7 +327,7 @@ export async function generateStepByStep(task: string): Promise<StepByStepRespon
   try {
     // 1. Chọn model (cache nếu đã có)
     if (!cachedModel) {
-      const availableModels = await listModels(GEMINI_API_KEY);
+      const availableModels = await listModels(getApiKey());
       log('Available models:', availableModels.slice(0, 5)); // Show first 5
       
       if (availableModels.length === 0) {
@@ -301,7 +335,7 @@ export async function generateStepByStep(task: string): Promise<StepByStepRespon
       }
       
       // Chọn model từ danh sách có sẵn
-      cachedModel = await pickAvailableModel(GEMINI_API_KEY);
+      cachedModel = await pickAvailableModel(getApiKey());
       
       if (!cachedModel) {
         // Fallback: dùng model đầu tiên trong list
@@ -356,7 +390,7 @@ KHÔNG viết markdown, KHÔNG giải thích thêm, CHỈ JSON thuần hợp l�
     } catch (error) {
       // 3. Retry với TẤT CẢ models available
       log('Retry with all available models');
-      const allModels = await listModels(GEMINI_API_KEY);
+      const allModels = await listModels(getApiKey());
       
       for (const model of allModels) {
         if (model === cachedModel) continue;
@@ -434,7 +468,7 @@ export async function testGeminiConnection(): Promise<boolean> {
   log('testGeminiConnection START');
   
   try {
-    const models = await listModels(GEMINI_API_KEY);
+    const models = await listModels(getApiKey());
     const success = models.length > 0;
     log('testGeminiConnection:', success ? 'SUCCESS' : 'FAILED', '| models:', models.length);
     return success;
