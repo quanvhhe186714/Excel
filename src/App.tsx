@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeProvider, CssBaseline, Box } from "@mui/material";
 import theme from "./theme";
 import Header from "./components/Header";
@@ -7,18 +7,36 @@ import FormulaGenerator from "./components/FormulaGenerator";
 import StepByStepGuide from "./components/StepByStepGuide";
 import FeaturesSection from "./components/FeaturesSection";
 import Footer from "./components/Footer";
+import ApiKeySetup from "./components/ApiKeySetup";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import DebugAPI from "./pages/DebugAPI";
 import Download from "./pages/Download";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { hasApiKey } from "./services/geminiService";
 
 function App() {
+  const [showApiSetup, setShowApiSetup] = useState(false);
+
+  useEffect(() => {
+    // Check nếu chưa có API key → hiện dialog bắt buộc
+    if (!hasApiKey()) {
+      setShowApiSetup(true);
+    }
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
         <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          {/* API Key Setup - Bắt buộc khi chưa có key */}
+          <ApiKeySetup 
+            open={showApiSetup} 
+            onClose={() => setShowApiSetup(false)}
+            required={!hasApiKey()}
+          />
+          
           <Header />
           <Box sx={{ flex: 1 }}>
             <Routes>
