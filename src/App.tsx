@@ -3,12 +3,12 @@ import { ThemeProvider, CssBaseline, Box } from "@mui/material";
 import theme from "./theme";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
+import FormulaGenerator from "./components/FormulaGenerator";
+import StepByStepGuide from "./components/StepByStepGuide";
 import FeaturesSection from "./components/FeaturesSection";
-import TestimonialsSection from "./components/TestimonialsSection";
 import Footer from "./components/Footer";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Pricing from "./pages/Pricing";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -23,13 +23,17 @@ function App() {
               <Route path="/" element={
                 <>
                   <HeroSection />
+                  <Box id="formula-generator">
+                    <FormulaGenerator />
+                  </Box>
+                  <Box id="step-by-step">
+                    <StepByStepGuide />
+                  </Box>
                   <FeaturesSection />
-                  <TestimonialsSection />
                 </>
               } />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/pricing" element={<Pricing />} />
             </Routes>
           </Box>
           <Footer />

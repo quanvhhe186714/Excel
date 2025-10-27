@@ -47,21 +47,21 @@ const Contact: React.FC = () => {
               fontSize: { xs: '2.5rem', md: '4rem' },
               fontWeight: 'bold',
               mb: 3,
-              color: '#333',
+              color: '#111827',
             }}
           >
-            Contact Us
+            Liên hệ với chúng tôi
           </Typography>
           <Typography
             variant="h5"
             sx={{
               mb: 4,
-              color: '#666',
+              color: '#6b7280',
               maxWidth: '800px',
               mx: 'auto',
             }}
           >
-            Get in touch with our team. We're here to help you succeed with AI-powered Excel solutions.
+            Có câu hỏi hoặc cần hỗ trợ? Chúng tôi luôn sẵn sàng giúp đỡ bạn!
           </Typography>
         </Box>
 
@@ -72,17 +72,17 @@ const Contact: React.FC = () => {
               sx={{
                 fontWeight: 'bold',
                 mb: 4,
-                color: '#333',
+                color: '#111827',
               }}
             >
-              Send us a message
+              Gửi tin nhắn
             </Typography>
             <Box component="form" onSubmit={handleSubmit}>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                   <TextField
                     fullWidth
-                    label="Name"
+                    label="Họ và tên"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
@@ -115,7 +115,7 @@ const Contact: React.FC = () => {
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
-                    label="Company"
+                    label="Công ty/Trường (không bắt buộc)"
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
@@ -130,7 +130,7 @@ const Contact: React.FC = () => {
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
-                    label="Message"
+                    label="Nội dung tin nhắn"
                     name="message"
                     multiline
                     rows={6}
@@ -152,7 +152,7 @@ const Contact: React.FC = () => {
                     size="large"
                     startIcon={<Send />}
                     sx={{
-                      backgroundColor: '#1976d2',
+                      backgroundColor: '#10b981',
                       color: 'white',
                       px: 6,
                       py: 2,
@@ -161,11 +161,11 @@ const Contact: React.FC = () => {
                       borderRadius: 3,
                       textTransform: 'none',
                       '&:hover': {
-                        backgroundColor: '#1565c0',
+                        backgroundColor: '#059669',
                       },
                     }}
                   >
-                    Send Message
+                    Gửi tin nhắn
                   </Button>
                 </Grid>
               </Grid>
@@ -204,7 +204,7 @@ const Contact: React.FC = () => {
                       </Typography>
                     </Box>
                     <Typography variant="body1" sx={{ color: '#666' }}>
-                      support@ajelix.com
+                      support@eoffice-tutor.ai
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#999', mt: 1 }}>
                       We typically respond within 24 hours
@@ -232,10 +232,10 @@ const Contact: React.FC = () => {
                       </Typography>
                     </Box>
                     <Typography variant="body1" sx={{ color: '#666' }}>
-                      +1 (555) 123-4567
+                      +84 123 456 789
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#999', mt: 1 }}>
-                      Monday - Friday, 9 AM - 6 PM EST
+                      Thứ 2 - Thứ 6, 8:00 - 17:00
                     </Typography>
                   </CardContent>
                 </Card>
@@ -260,12 +260,12 @@ const Contact: React.FC = () => {
                       </Typography>
                     </Box>
                     <Typography variant="body1" sx={{ color: '#666' }}>
-                      AJELIX SIA<br />
-                      Riga, Latvia<br />
-                      LV-1010
+                      EOffice Tutor AI<br />
+                      Việt Nam<br />
+                      
                     </Typography>
                     <Typography variant="body2" sx={{ color: '#999', mt: 1 }}>
-                      By appointment only
+                      Liên hệ qua email hoặc form
                     </Typography>
                   </CardContent>
                 </Card>

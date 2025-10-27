@@ -5,27 +5,40 @@ import {
   Typography,
   Button,
   Grid,
-  Card,
-  CardContent,
 } from '@mui/material';
 import {
-  RocketLaunch,
-  Analytics,
-  AutoFixHigh,
-  Build,
+  Functions,
+  Speed,
+  SmartToy,
+  TrendingUp,
 } from '@mui/icons-material';
 
 const HeroSection: React.FC = () => {
   return (
     <Box
       sx={{
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
         color: 'white',
-        py: { xs: 8, md: 12 },
+        py: { xs: 10, md: 14 },
         mt: 8,
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
-      <Container maxWidth="lg">
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px)',
+          backgroundSize: '50px 50px',
+          opacity: 0.3,
+        }}
+      />
+      
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Typography
             variant="h1"
@@ -36,168 +49,102 @@ const HeroSection: React.FC = () => {
               lineHeight: 1.2,
             }}
           >
-            Get Work Done Faster With an AI Data Analyst! 🚀
+            Tạo Công Thức Excel Bằng AI
           </Typography>
           <Typography
             variant="h5"
             sx={{
               mb: 4,
-              opacity: 0.9,
+              opacity: 0.95,
               maxWidth: '800px',
               mx: 'auto',
+              fontWeight: 400,
             }}
           >
-            Create & Improve Processes With Excel AI
+            EOffice Tutor AI - Trợ lý AI thông minh giúp bạn tạo công thức Excel phức tạp chỉ trong vài giây
           </Typography>
           <Typography
             variant="h6"
             sx={{
               mb: 6,
-              opacity: 0.8,
-              maxWidth: '600px',
+              opacity: 0.9,
+              maxWidth: '700px',
               mx: 'auto',
+              fontWeight: 300,
             }}
           >
-            Get work done using Excel AI tools designed for business managers and owners.
+            Chỉ cần mô tả những gì bạn muốn làm, AI sẽ tự động tạo công thức Excel chính xác cho bạn
           </Typography>
           <Button
             variant="contained"
             size="large"
+            href="#formula-generator"
             sx={{
-              backgroundColor: '#ff6b35',
-              color: 'white',
+              backgroundColor: 'white',
+              color: '#10b981',
               px: 6,
               py: 2,
               fontSize: '1.2rem',
               fontWeight: 'bold',
               borderRadius: 3,
               textTransform: 'none',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
               '&:hover': {
-                backgroundColor: '#e55a2b',
+                backgroundColor: '#f0fdf4',
+                transform: 'translateY(-2px)',
+                boxShadow: '0 6px 25px rgba(0,0,0,0.25)',
               },
+              transition: 'all 0.3s ease',
             }}
           >
-            Get Started
+            Dùng thử ngay - Miễn phí
           </Button>
-          <Typography
-            variant="body1"
-            sx={{
-              mt: 3,
-              opacity: 0.8,
-            }}
-          >
-            Join 280,000+ users worldwide
-          </Typography>
         </Box>
 
-        <Grid container spacing={4} sx={{ mt: 8 }}>
+        <Grid container spacing={3} sx={{ mt: 6 }}>
           <Grid item xs={12} sm={6} md={3}>
-            <Card
-              className="fade-in-up card-hover"
-              sx={{
-                height: '100%',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: 3,
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-8px) scale(1.02)',
-                  boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
-                },
-              }}
-            >
-              <CardContent sx={{ textAlign: 'center', p: 3 }}>
-                <RocketLaunch sx={{ fontSize: 48, mb: 2, color: '#ff6b35' }} />
-                <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
-                  Reduce manual tasks
-                </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                  Create VBA & Excel forms
-                </Typography>
-              </CardContent>
-            </Card>
+            <Box sx={{ textAlign: 'center' }}>
+              <Functions sx={{ fontSize: 56, mb: 2 }} />
+              <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
+                Công thức phức tạp
+              </Typography>
+              <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                Tạo mọi công thức từ đơn giản đến nâng cao
+              </Typography>
+            </Box>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Card
-              className="fade-in-up card-hover"
-              sx={{
-                height: '100%',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: 3,
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-8px) scale(1.02)',
-                  boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
-                },
-              }}
-            >
-              <CardContent sx={{ textAlign: 'center', p: 3 }}>
-                <Analytics sx={{ fontSize: 48, mb: 2, color: '#ff6b35' }} />
-                <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
-                  Get insights
-                </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                  Ask questions & get answers
-                </Typography>
-              </CardContent>
-            </Card>
+            <Box sx={{ textAlign: 'center' }}>
+              <Speed sx={{ fontSize: 56, mb: 2 }} />
+              <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
+                Nhanh chóng
+              </Typography>
+              <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                Tiết kiệm hàng giờ làm việc thủ công
+              </Typography>
+            </Box>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Card
-              className="fade-in-up card-hover"
-              sx={{
-                height: '100%',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: 3,
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-8px) scale(1.02)',
-                  boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
-                },
-              }}
-            >
-              <CardContent sx={{ textAlign: 'center', p: 3 }}>
-                <AutoFixHigh sx={{ fontSize: 48, mb: 2, color: '#ff6b35' }} />
-                <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
-                  Clean data
-                </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                  Extract & transform data
-                </Typography>
-              </CardContent>
-            </Card>
+            <Box sx={{ textAlign: 'center' }}>
+              <SmartToy sx={{ fontSize: 56, mb: 2 }} />
+              <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
+                AI thông minh
+              </Typography>
+              <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                Hiểu ngôn ngữ tự nhiên của bạn
+              </Typography>
+            </Box>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Card
-              className="fade-in-up card-hover"
-              sx={{
-                height: '100%',
-                backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: 3,
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-8px) scale(1.02)',
-                  boxShadow: '0 8px 25px rgba(0,0,0,0.2)',
-                },
-              }}
-            >
-              <CardContent sx={{ textAlign: 'center', p: 3 }}>
-                <Build sx={{ fontSize: 48, mb: 2, color: '#ff6b35' }} />
-                <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
-                  Build your ideas
-                </Typography>
-                <Typography variant="body2" sx={{ opacity: 0.9 }}>
-                  Create custom solutions
-                </Typography>
-              </CardContent>
-            </Card>
+            <Box sx={{ textAlign: 'center' }}>
+              <TrendingUp sx={{ fontSize: 56, mb: 2 }} />
+              <Typography variant="h6" sx={{ mb: 1, fontWeight: 600 }}>
+                Giải thích chi tiết
+              </Typography>
+              <Typography variant="body2" sx={{ opacity: 0.9 }}>
+                Hiểu rõ cách công thức hoạt động
+              </Typography>
+            </Box>
           </Grid>
         </Grid>
       </Container>
