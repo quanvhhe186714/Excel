@@ -46,16 +46,16 @@ const Header: React.FC = () => {
           <ListItemText primary="Home" />
         </ListItemButton>
         <ListItemButton onClick={() => scrollToSection('formula-generator')}>
-          <ListItemText primary="Formula Generator" />
-        </ListItemButton>
-        <ListItemButton onClick={() => scrollToSection('step-by-step')}>
-          <ListItemText primary="Step by Step" />
+          <ListItemText primary="Features" />
         </ListItemButton>
         <ListItemButton component={Link} to="/about">
           <ListItemText primary="About" />
         </ListItemButton>
         <ListItemButton component={Link} to="/contact">
           <ListItemText primary="Contact" />
+        </ListItemButton>
+        <ListItemButton component={Link} to="/download" sx={{ backgroundColor: '#d1fae5' }}>
+          <ListItemText primary="Tải Ngay" primaryTypographyProps={{ fontWeight: 700, color: '#065f46' }} />
         </ListItemButton>
       </List>
     </Box>
@@ -106,14 +106,7 @@ const Header: React.FC = () => {
                 onClick={() => scrollToSection('formula-generator')}
                 sx={{ textTransform: 'none', fontWeight: 500 }}
               >
-                Formula Generator
-              </Button>
-              <Button
-                color="inherit"
-                onClick={() => scrollToSection('step-by-step')}
-                sx={{ textTransform: 'none', fontWeight: 500 }}
-              >
-                Step by Step
+                Features
               </Button>
               <Button
                 color="inherit"
@@ -133,7 +126,8 @@ const Header: React.FC = () => {
               </Button>
               <Button
                 variant="contained"
-                onClick={() => scrollToSection('formula-generator')}
+                component={Link}
+                to="/download"
                 sx={{
                   backgroundColor: '#10b981',
                   color: 'white',
@@ -144,10 +138,11 @@ const Header: React.FC = () => {
                   borderRadius: 2,
                   '&:hover': {
                     backgroundColor: '#059669',
+                    boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)',
                   },
                 }}
               >
-                Try Now
+                Tải Ngay
               </Button>
             </Box>
           )}
