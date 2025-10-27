@@ -1,16 +1,21 @@
 /**
  * ⚠️ WARNING: FOR DEMO PURPOSES ONLY! ⚠️
  * 
- * This API key is exposed in frontend code.
+ * API key được lưu trong .env.local (không commit lên Git)
+ * 
  * For production:
  * 1. Move this to backend API
- * 2. Never commit API keys to Git
- * 3. Use environment variables
- * 4. Implement rate limiting and authentication
+ * 2. Never expose API keys in frontend
+ * 3. Implement authentication & rate limiting
  */
 
-const GEMINI_API_KEY = 'AIzaSyB8GiRyoOAe-lCkxr_eqCjSMfYl3BgeeIM';
+const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY || '';
 const GEMINI_BASE_URL = 'https://generativelanguage.googleapis.com/v1';
+
+// Validate API key exists
+if (!GEMINI_API_KEY) {
+  console.error('❌ GEMINI_API_KEY not found! Check .env.local file');
+}
 
 // Danh sách models ưu tiên + fallback
 const PREFERRED_MODELS = [
