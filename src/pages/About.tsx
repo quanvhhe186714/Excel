@@ -14,6 +14,7 @@ import {
   TrendingUp,
   Security,
 } from '@mui/icons-material';
+import { Link as RouterLink } from 'react-router-dom';
 
 const About: React.FC = () => {
   return (
@@ -26,21 +27,21 @@ const About: React.FC = () => {
               fontSize: { xs: '2.5rem', md: '4rem' },
               fontWeight: 'bold',
               mb: 3,
-              color: '#333',
+              color: '#111827',
             }}
           >
-            About Ajelix AI
+            Về EOffice Tutor AI
           </Typography>
           <Typography
             variant="h5"
             sx={{
               mb: 4,
-              color: '#666',
+              color: '#6b7280',
               maxWidth: '800px',
               mx: 'auto',
             }}
           >
-            Empowering businesses worldwide with AI-powered Excel solutions since 2018
+            Trợ lý AI thông minh giúp mọi người làm việc với Excel hiệu quả hơn
           </Typography>
         </Box>
 
@@ -51,31 +52,33 @@ const About: React.FC = () => {
               sx={{
                 fontWeight: 'bold',
                 mb: 3,
-                color: '#333',
+                color: '#111827',
               }}
             >
-              Our Mission
+              Sứ mệnh
             </Typography>
             <Typography
               variant="body1"
               sx={{
                 mb: 3,
-                color: '#666',
+                color: '#6b7280',
                 lineHeight: 1.8,
                 fontSize: '1.1rem',
               }}
             >
-              We believe that every business should have access to powerful AI tools that can transform their data workflows. Our mission is to democratize AI-powered Excel automation, making it accessible to teams of all sizes and technical backgrounds.
+              Chúng tôi tin rằng mọi người đều xứng đáng có một công cụ AI mạnh mẽ giúp đơn giản hóa công việc với Excel. 
+              EOffice Tutor AI được tạo ra để giúp sinh viên, nhân viên văn phòng, và các chuyên gia làm việc hiệu quả hơn.
             </Typography>
             <Typography
               variant="body1"
               sx={{
-                color: '#666',
+                color: '#6b7280',
                 lineHeight: 1.8,
                 fontSize: '1.1rem',
               }}
             >
-              Since 2018, we've helped over 280,000 users worldwide streamline their Excel processes, reduce manual work, and gain deeper insights from their data.
+              Với công nghệ AI tiên tiến, chúng tôi giúp bạn tạo công thức Excel phức tạp chỉ trong vài giây, 
+              tiết kiệm thời gian và giảm thiểu sai sót trong công việc hàng ngày.
             </Typography>
           </Grid>
           <Grid item xs={12} lg={6}>
@@ -94,13 +97,13 @@ const About: React.FC = () => {
                 variant="h2"
                 sx={{
                   fontWeight: 'bold',
-                  color: '#1976d2',
+                  color: '#10b981',
                   textAlign: 'center',
                 }}
               >
-                280,000+<br />
-                <Typography variant="h4" sx={{ color: '#666', fontWeight: 'normal' }}>
-                  Happy Users
+                AI Powered<br />
+                <Typography variant="h4" sx={{ color: '#6b7280', fontWeight: 'normal' }}>
+                  Formula Generator
                 </Typography>
               </Typography>
             </Box>
@@ -113,10 +116,10 @@ const About: React.FC = () => {
             sx={{
               fontWeight: 'bold',
               mb: 4,
-              color: '#333',
+              color: '#111827',
             }}
           >
-            Why Choose Ajelix?
+            Tại sao chọn EOffice Tutor AI?
           </Typography>
         </Box>
 
@@ -135,12 +138,12 @@ const About: React.FC = () => {
               }}
             >
               <CardContent>
-                <Business sx={{ fontSize: 48, mb: 2, color: '#1976d2' }} />
+                <Business sx={{ fontSize: 48, mb: 2, color: '#10b981' }} />
                 <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
-                  Business Focused
+                  Dễ sử dụng
                 </Typography>
-                <Typography variant="body2" sx={{ color: '#666' }}>
-                  Designed specifically for business managers and owners who need practical Excel solutions.
+                <Typography variant="body2" sx={{ color: '#6b7280' }}>
+                  Giao diện đơn giản, thân thiện. Chỉ cần mô tả bằng tiếng Việt, AI sẽ tạo công thức cho bạn.
                 </Typography>
               </CardContent>
             </Card>
@@ -159,12 +162,12 @@ const About: React.FC = () => {
               }}
             >
               <CardContent>
-                <Group sx={{ fontSize: 48, mb: 2, color: '#1976d2' }} />
+                <Group sx={{ fontSize: 48, mb: 2, color: '#10b981' }} />
                 <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
-                  Community Driven
+                  Chính xác
                 </Typography>
-                <Typography variant="body2" sx={{ color: '#666' }}>
-                  Built with feedback from our global community of Excel users and data professionals.
+                <Typography variant="body2" sx={{ color: '#6b7280' }}>
+                  AI được training kỹ lưỡng, đảm bảo tạo ra công thức Excel chính xác và tối ưu.
                 </Typography>
               </CardContent>
             </Card>
@@ -183,12 +186,12 @@ const About: React.FC = () => {
               }}
             >
               <CardContent>
-                <TrendingUp sx={{ fontSize: 48, mb: 2, color: '#1976d2' }} />
+                <TrendingUp sx={{ fontSize: 48, mb: 2, color: '#10b981' }} />
                 <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
-                  Continuously Improving
+                  Học & phát triển
                 </Typography>
-                <Typography variant="body2" sx={{ color: '#666' }}>
-                  Regular updates and new features based on user needs and technological advancements.
+                <Typography variant="body2" sx={{ color: '#6b7280' }}>
+                  Không chỉ tạo công thức, còn giải thích cách hoạt động để bạn học hỏi thêm.
                 </Typography>
               </CardContent>
             </Card>
@@ -207,12 +210,12 @@ const About: React.FC = () => {
               }}
             >
               <CardContent>
-                <Security sx={{ fontSize: 48, mb: 2, color: '#1976d2' }} />
+                <Security sx={{ fontSize: 48, mb: 2, color: '#10b981' }} />
                 <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
-                  Secure & Reliable
+                  Miễn phí
                 </Typography>
-                <Typography variant="body2" sx={{ color: '#666' }}>
-                  Enterprise-grade security and reliability with 99.9% uptime guarantee.
+                <Typography variant="body2" sx={{ color: '#6b7280' }}>
+                  Sử dụng miễn phí các tính năng cơ bản. Không cần đăng ký hay cung cấp thẻ tín dụng.
                 </Typography>
               </CardContent>
             </Card>
@@ -223,8 +226,10 @@ const About: React.FC = () => {
           <Button
             variant="contained"
             size="large"
+            component={RouterLink}
+            to="/"
             sx={{
-              backgroundColor: '#1976d2',
+              backgroundColor: '#10b981',
               color: 'white',
               px: 6,
               py: 2,
@@ -233,11 +238,11 @@ const About: React.FC = () => {
               borderRadius: 3,
               textTransform: 'none',
               '&:hover': {
-                backgroundColor: '#1565c0',
+                backgroundColor: '#059669',
               },
             }}
           >
-            Get Started Today
+            Dùng thử ngay
           </Button>
         </Box>
       </Container>

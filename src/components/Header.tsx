@@ -5,8 +5,6 @@ import {
   Typography,
   Button,
   Box,
-  Menu,
-  MenuItem,
   IconButton,
   useTheme,
   useMediaQuery,
@@ -17,7 +15,7 @@ import {
 } from '@mui/material';
 import {
   Menu as MenuIcon,
-  ExpandMore,
+  Functions,
 } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 
@@ -25,31 +23,33 @@ const Header: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [dataVizAnchor, setDataVizAnchor] = useState<null | HTMLElement>(null);
-  const [toolsAnchor, setToolsAnchor] = useState<null | HTMLElement>(null);
-  const [resourcesAnchor, setResourcesAnchor] = useState<null | HTMLElement>(null);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleMenuClose = () => {
-    setDataVizAnchor(null);
-    setToolsAnchor(null);
-    setResourcesAnchor(null);
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    setMobileOpen(false);
   };
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        Ajelix AI
+      <Typography variant="h6" sx={{ my: 2, fontWeight: 'bold', color: '#10b981' }}>
+        EOffice Tutor AI
       </Typography>
       <List>
         <ListItemButton component={Link} to="/">
           <ListItemText primary="Home" />
         </ListItemButton>
-        <ListItemButton component={Link} to="/pricing">
-          <ListItemText primary="Pricing" />
+        <ListItemButton onClick={() => scrollToSection('formula-generator')}>
+          <ListItemText primary="Formula Generator" />
+        </ListItemButton>
+        <ListItemButton onClick={() => scrollToSection('step-by-step')}>
+          <ListItemText primary="Step by Step" />
         </ListItemButton>
         <ListItemButton component={Link} to="/about">
           <ListItemText primary="About" />
@@ -63,8 +63,18 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ backgroundColor: 'white', color: 'black', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+      <AppBar 
+        position="fixed" 
+        sx={{ 
+          backgroundColor: 'rgba(255, 255, 255, 0.95)', 
+          backdropFilter: 'blur(10px)',
+          color: 'black', 
+          boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+          borderBottom: '1px solid rgba(0,0,0,0.05)'
+        }}
+      >
         <Toolbar>
+          <Functions sx={{ fontSize: 32, color: '#10b981', mr: 1 }} />
           <Typography
             variant="h6"
             component={Link}
@@ -72,12 +82,12 @@ const Header: React.FC = () => {
             sx={{
               flexGrow: 1,
               fontWeight: 'bold',
-              color: '#1976d2',
+              color: '#10b981',
               textDecoration: 'none',
               fontSize: '1.5rem',
             }}
           >
-            Ajelix AI
+            EOffice Tutor AI
           </Typography>
 
           {isMobile ? (
@@ -93,117 +103,51 @@ const Header: React.FC = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Button
                 color="inherit"
-                onClick={(e) => setDataVizAnchor(e.currentTarget)}
-                endIcon={<ExpandMore />}
+                onClick={() => scrollToSection('formula-generator')}
                 sx={{ textTransform: 'none', fontWeight: 500 }}
               >
-                Data Visualization
+                Formula Generator
               </Button>
-              <Menu
-                anchorEl={dataVizAnchor}
-                open={Boolean(dataVizAnchor)}
-                onClose={handleMenuClose}
-                PaperProps={{
-                  sx: { mt: 1, minWidth: 200 }
-                }}
-              >
-                <MenuItem onClick={handleMenuClose}>Connect Your Data</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Visualization</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Data Preparation</MenuItem>
-                <MenuItem onClick={handleMenuClose}>AI Data Analytics</MenuItem>
-              </Menu>
-
               <Button
                 color="inherit"
-                onClick={(e) => setToolsAnchor(e.currentTarget)}
-                endIcon={<ExpandMore />}
+                onClick={() => scrollToSection('step-by-step')}
                 sx={{ textTransform: 'none', fontWeight: 500 }}
               >
-                Tools
+                Step by Step
               </Button>
-              <Menu
-                anchorEl={toolsAnchor}
-                open={Boolean(toolsAnchor)}
-                onClose={handleMenuClose}
-                PaperProps={{
-                  sx: { mt: 1, minWidth: 250 }
-                }}
-              >
-                <MenuItem onClick={handleMenuClose}>AI Data Analyst</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Excel Formula Generator</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Excel Formula Explainer</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Google Apps Script Generator</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Excel VBA Script Explainer</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Excel VBA Script Generator</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Excel VBA Code Optimizer</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Excel VBA Code Debugger</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Google Sheets Formula Generator</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Google Apps Script Explainer</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Google Sheets Formula Explainer</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Google Apps Script Optimizer</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Google Apps Script Debugger</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Excel File Translator</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Excel Template Generator</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Excel Add-in</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Your Virtual AI Assistant For Excel Spreadsheets</MenuItem>
-                <MenuItem onClick={handleMenuClose}>AI Answer Generator</MenuItem>
-                <MenuItem onClick={handleMenuClose}>AI Math Solver</MenuItem>
-                <MenuItem onClick={handleMenuClose}>AI Graph Generator</MenuItem>
-                <MenuItem onClick={handleMenuClose}>AI SQL Generator</MenuItem>
-              </Menu>
-
               <Button
                 color="inherit"
                 component={Link}
-                to="/pricing"
+                to="/about"
                 sx={{ textTransform: 'none', fontWeight: 500 }}
               >
-                Pricing
+                About
               </Button>
-
               <Button
                 color="inherit"
-                onClick={(e) => setResourcesAnchor(e.currentTarget)}
-                endIcon={<ExpandMore />}
+                component={Link}
+                to="/contact"
                 sx={{ textTransform: 'none', fontWeight: 500 }}
               >
-                Resources
-              </Button>
-              <Menu
-                anchorEl={resourcesAnchor}
-                open={Boolean(resourcesAnchor)}
-                onClose={handleMenuClose}
-                PaperProps={{
-                  sx: { mt: 1, minWidth: 200 }
-                }}
-              >
-                <MenuItem onClick={handleMenuClose}>Guides and Tutorials</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Formulas and Functions</MenuItem>
-                <MenuItem onClick={handleMenuClose}>Release Notes</MenuItem>
-              </Menu>
-
-              <Button
-                color="inherit"
-                sx={{ textTransform: 'none', fontWeight: 500 }}
-              >
-                Log in
+                Contact
               </Button>
               <Button
                 variant="contained"
+                onClick={() => scrollToSection('formula-generator')}
                 sx={{
-                  backgroundColor: '#1976d2',
+                  backgroundColor: '#10b981',
                   color: 'white',
                   textTransform: 'none',
-                  fontWeight: 500,
+                  fontWeight: 600,
                   px: 3,
                   py: 1,
                   borderRadius: 2,
                   '&:hover': {
-                    backgroundColor: '#1565c0',
+                    backgroundColor: '#059669',
                   },
                 }}
               >
-                Start Free
+                Try Now
               </Button>
             </Box>
           )}
